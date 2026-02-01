@@ -1,9 +1,13 @@
+import { useLanguage } from '../i18n/LanguageContext';
+
 interface FooterProps {
   completedCount: number;
   onClearCompleted: () => void;
 }
 
 export function Footer({ completedCount, onClearCompleted }: FooterProps) {
+  const { t } = useLanguage();
+
   return (
     <footer className="footer">
       <button
@@ -11,7 +15,7 @@ export function Footer({ completedCount, onClearCompleted }: FooterProps) {
         onClick={onClearCompleted}
         disabled={completedCount === 0}
       >
-        清除已完成
+        {t('clearCompleted')}
       </button>
     </footer>
   );

@@ -1,4 +1,6 @@
 import { FilterType } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
+import { TranslationKey } from '../i18n/translations';
 
 interface FilterBarProps {
   currentFilter: FilterType;
@@ -6,10 +8,12 @@ interface FilterBarProps {
 }
 
 export function FilterBar({ currentFilter, onFilterChange }: FilterBarProps) {
-  const filters: { value: FilterType; label: string }[] = [
-    { value: 'all', label: '全部' },
-    { value: 'pending', label: '待完成' },
-    { value: 'completed', label: '已完成' }
+  const { t } = useLanguage();
+
+  const filters: { value: FilterType; labelKey: TranslationKey }[] = [
+    { value: 'all', labelKey: 'filterAll' },
+    { value: 'pending', labelKey: 'filterPending' },
+    { value: 'completed', labelKey: 'filterCompleted' }
   ];
 
   return (
@@ -20,7 +24,7 @@ export function FilterBar({ currentFilter, onFilterChange }: FilterBarProps) {
           className={`filter-btn ${currentFilter === filter.value ? 'active' : ''}`}
           onClick={() => onFilterChange(filter.value)}
         >
-          {filter.label}
+          {t(filter.labelKey)}
         </button>
       ))}
     </div>

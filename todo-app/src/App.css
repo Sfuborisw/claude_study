@@ -18,6 +18,39 @@ body {
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  position: relative;
+}
+
+.language-switcher {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.language-select {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.language-select:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.language-select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.language-select option {
+  color: #333;
+  background: white;
 }
 
 .header {

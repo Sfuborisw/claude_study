@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Priority, PRIORITY_LABELS } from '../types';
+import { Priority } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface TaskInputProps {
   onAdd: (text: string, priority: Priority) => void;
@@ -8,6 +9,7 @@ interface TaskInputProps {
 export function TaskInput({ onAdd }: TaskInputProps) {
   const [text, setText] = useState('');
   const [priority, setPriority] = useState<Priority>('medium');
+  const { t } = useLanguage();
 
   const handleSubmit = () => {
     if (text.trim()) {
@@ -28,7 +30,7 @@ export function TaskInput({ onAdd }: TaskInputProps) {
         <input
           type="text"
           className="task-input"
-          placeholder="新增待辦事項..."
+          placeholder={t('placeholder')}
           value={text}
           onChange={e => setText(e.target.value)}
           onKeyPress={handleKeyPress}
@@ -39,12 +41,12 @@ export function TaskInput({ onAdd }: TaskInputProps) {
           value={priority}
           onChange={e => setPriority(e.target.value as Priority)}
         >
-          <option value="high">{PRIORITY_LABELS.high}</option>
-          <option value="medium">{PRIORITY_LABELS.medium}</option>
-          <option value="low">{PRIORITY_LABELS.low}</option>
+          <option value="high">{t('priorityHigh')}</option>
+          <option value="medium">{t('priorityMedium')}</option>
+          <option value="low">{t('priorityLow')}</option>
         </select>
         <button className="add-btn" onClick={handleSubmit}>
-          新增
+          {t('addButton')}
         </button>
       </div>
     </div>
